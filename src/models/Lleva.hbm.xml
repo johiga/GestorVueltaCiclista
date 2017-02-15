@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2017 13:34:48 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Lleva" table="lleva" catalog="ciclismoad1617" optimistic-lock="version">
+        <composite-id name="id" class="models.LlevaId">
+            <key-property name="numetapa" type="int">
+                <column name="numetapa" />
+            </key-property>
+            <key-property name="codigo" type="string">
+                <column name="codigo" length="3" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="ciclista" class="models.Ciclista" fetch="select">
+            <column name="dorsal" not-null="true" />
+        </many-to-one>
+        <many-to-one name="etapa" class="models.Etapa" update="false" insert="false" fetch="select">
+            <column name="numetapa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="maillot" class="models.Maillot" update="false" insert="false" fetch="select">
+            <column name="codigo" length="3" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

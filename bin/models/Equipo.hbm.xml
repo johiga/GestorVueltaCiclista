@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2017 13:34:48 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Equipo" table="equipo" catalog="ciclismoad1617" optimistic-lock="version">
+        <id name="nomequipo" type="string">
+            <column name="nomequipo" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="director" type="string">
+            <column name="director" length="100" />
+        </property>
+        <set name="ciclistas" table="ciclista" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nomequipo" length="25" />
+            </key>
+            <one-to-many class="models.Ciclista" />
+        </set>
+    </class>
+</hibernate-mapping>

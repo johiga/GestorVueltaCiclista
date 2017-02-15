@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2017 13:34:48 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Ciclista" table="ciclista" catalog="ciclismoad1617" optimistic-lock="version">
+        <id name="dorsal" type="int">
+            <column name="dorsal" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipo" class="models.Equipo" fetch="select">
+            <column name="nomequipo" length="25" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <set name="etapas" table="etapa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dorsal" />
+            </key>
+            <one-to-many class="models.Etapa" />
+        </set>
+        <set name="llevas" table="lleva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dorsal" not-null="true" />
+            </key>
+            <one-to-many class="models.Lleva" />
+        </set>
+        <set name="puertos" table="puerto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dorsal" />
+            </key>
+            <one-to-many class="models.Puerto" />
+        </set>
+    </class>
+</hibernate-mapping>

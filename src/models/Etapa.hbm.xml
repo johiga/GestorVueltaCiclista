@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-ene-2017 13:34:48 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Etapa" table="etapa" catalog="ciclismoad1617" optimistic-lock="version">
+        <id name="numetapa" type="int">
+            <column name="numetapa" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="ciclista" class="models.Ciclista" fetch="select">
+            <column name="dorsal" />
+        </many-to-one>
+        <property name="kms" type="java.lang.Integer">
+            <column name="kms" />
+        </property>
+        <property name="salida" type="string">
+            <column name="salida" length="35" />
+        </property>
+        <property name="llegada" type="string">
+            <column name="llegada" length="35" />
+        </property>
+        <set name="puertos" table="puerto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numetapa" not-null="true" />
+            </key>
+            <one-to-many class="models.Puerto" />
+        </set>
+        <set name="llevas" table="lleva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numetapa" not-null="true" />
+            </key>
+            <one-to-many class="models.Lleva" />
+        </set>
+    </class>
+</hibernate-mapping>
